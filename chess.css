@@ -1,0 +1,49 @@
+.mec {
+    width: 1400px;
+    min-height: 650px;
+    border: 10px solid rgb(58, 214, 10);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background-color: rgb(104, 233, 121);
+    margin: 5px auto;
+}
+
+.board {
+    width: 640px;
+    height: 640px;
+    border: 15px solid rgb(61, 3, 3);
+}
+
+.board2 {
+    width: 540px;
+    height: 640px;
+    border: 15px solid rgb(61, 3, 3);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square {
+    float: left;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.black {
+    background-color: #999
+}
+
+.white {
+    background-color: rgb(222, 216, 172)
+}
+
+.figure {
+    font-size: 60px;
+    cursor: pointer;
+}
+
+ 
