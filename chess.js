@@ -1,25 +1,25 @@
 var map;
 var divSquare = '<div id="s$coord" class="square color"></div>';
 var divFigure = '<div id = "f$coord" class = "figure">$figure</div>';
-var Figure = '<div  class="kfigure">$fig</div>';
+var Figure = '<div  class="figure">$fig</div>';
 var isDragging = false;
 var isFlipped = false;
 
 var figure2;
 $(function () {
- 
+
   start();
   $('.buttonNew').click(newFiguresPHP);
   $('.buttonFlip').click(flipBoard);
   setInterval('showFiguresPHP() ', 1000);
-  
+
 
 });
 function start() {
   map = new Array(64);
   addsquares();
   showFiguresPHP();
- 
+
   //showfigures('rnbqkbnrpppppppp11111111111111111111111111111111PPPPPPPPRNBQKBNR')
 
 }
@@ -42,21 +42,20 @@ function setDroppable() {
     drop: function (_event, ui) {
       var frCoord = ui.draggable.attr('id').substring(1);
       var toCoord = this.id.substring(1);
-     
+
       moveFigurePHP(frCoord, toCoord);
       moveFigure(frCoord, toCoord);
-     
+
       isDragging = false;
     }
   })
 }
 function moveFigure(frCoord, toCoord) {
   console.log('move from ' + frCoord + 'to ' + toCoord);
-
   figure = map[frCoord];
   showfigureAt(frCoord, '1');
   showfigureAt(toCoord, figure);
- 
+
 }
 
 function addsquares() {
@@ -83,14 +82,6 @@ function showfigureAt(coord, figure) {
     .replace('$coord', coord)
     .replace('$figure', getChessSymbole(figure)));
   setDraggable();
-  figure2=getChessSymbole(map[toCoord])
-  if (frCoord === toCoord) {
-    $('.board2').append(Figure.replace('$fig',''))
-  }
-  if (figure2 !== '') {
-    $('.board2').append(Figure.replace('$fig', figure2))
-    
-  }
 
 }
 
@@ -123,18 +114,23 @@ function newFiguresPHP() {
 }
 
 function moveFigurePHP(frCoord, toCoord) {
-
-
-
   $.get('chess.php?moveFigure' +
     '&frCoord=' + frCoord +
     '&toCoord=' + toCoord,
-   
     showfigures);
- 
-    
-      }
-    
+
+  figure2 = getChessSymbole(map[toCoord]);
+  if (frCoord === toCoord) {
+    figure2=''
+    $('.board2').append(Figure.replace('$fig',''));
+  }
+  if (figure2 !== '') {
+
+    $('.board2').append(Figure.replace('$fig',figure2))
+
+  }
+}
+
 
 
 
